@@ -17,7 +17,7 @@ class HistoryController extends Controller
 
     public function index(): Response
     {
-        return Inertia::render('Histories/Index', [
+        return Inertia::render('admin/history/index', [
             'histories' => History::orderBy('year', 'desc')
                 ->get()
                 ->map(function ($history) {
@@ -34,7 +34,7 @@ class HistoryController extends Controller
 
     public function create(): Response
     {
-        return Inertia::render('Histories/Create');
+        return Inertia::render('admin/history/create');
     }
 
     public function store(HistoryRequest $request): RedirectResponse
@@ -72,7 +72,7 @@ class HistoryController extends Controller
 
     public function edit(History $history): Response
     {
-        return Inertia::render('Histories/Edit', [
+        return Inertia::render('admin/history/edit', [
             'history' => [
                 'id' => $history->id,
                 'year' => $history->year,

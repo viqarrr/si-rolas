@@ -1,12 +1,13 @@
-import { useForm } from '@inertiajs/react';
-import { Save } from 'lucide-react';
-import AppLayout from '@/layouts/app-layout';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import FileUploadInertia from '@/components/file-upload';
 import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import AppLayout from '@/layouts/app-layout';
 import type { BreadcrumbItem, OrganizationalStructure } from '@/types';
+import { useForm } from '@inertiajs/react';
+import { Save } from 'lucide-react';
+import { useEffect } from 'react';
 
 interface OrganizationalStructuresEditProps {
     member: OrganizationalStructure;
@@ -15,20 +16,36 @@ interface OrganizationalStructuresEditProps {
 
 const breadcrumbs: BreadcrumbItem[] = [
     { title: 'Dashboard', href: '/' },
-    { title: 'Struktur Organisasi', href: '/struktur-organisasi' },
-    { title: 'Edit Data', href: '/struktur-organisasi/edit' },
+    { title: 'Struktur Organisasi', href: '/admin/struktur-organisasi' },
+    { title: 'Edit Data', href: '/admin/struktur-organisasi/edit' },
 ];
 
 export default function OrganizationalStructuresEdit({ member, errors = {} }: OrganizationalStructuresEditProps) {
-    const { data, setData, put, processing, progress } = useForm({
+    const { data, setData, post, processing } = useForm({
         name: member.name || '',
         position: member.position || '',
         photo: null as File | null,
+        _method: 'PUT', 
     });
+
+    useEffect(() => {
+        if (member) {
+            setData({
+                name: member.name || '',
+                position: member.position || '',
+                photo: null,
+                _method: 'PUT',
+            });
+        }
+    }, [member]);
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        put(route('organizational-structures.update', { id: member.id }));
+        
+        post(route('admin.organizational-structures.update', { id: member.id }), {
+            forceFormData: true,
+            preserveScroll: true,
+        });
     };
 
     return (
@@ -72,6 +89,7 @@ export default function OrganizationalStructuresEdit({ member, errors = {} }: Or
                                         value={data.photo}
                                         onChange={(file) => setData('photo', file as File)}
                                         placeholder="Upload a photo (JPG, PNG, WebP - max 5MB)"
+                                        previewUrl={member.photo_display_url}
                                     />
                                     {errors.photo && <p className="text-sm text-red-500">{errors.photo}</p>}
                                 </div>

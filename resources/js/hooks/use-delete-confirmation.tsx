@@ -14,12 +14,14 @@ import {
 interface UseDeleteConfirmationOptions<T> {
   routeName: string;
   getParams: (item: T) => Record<string, any>;
+  getTitle?: (item: T) => string; // Fungsi untuk ambil title dari item
   onSuccess?: () => void;
 }
 
-export function useDeleteConfirmation<T extends { id: number; title?: string }>({
+export function useDeleteConfirmation<T extends { id: number }>({
   routeName,
   getParams,
+  getTitle,
   onSuccess,
 }: UseDeleteConfirmationOptions<T>) {
   const [deleteItem, setDeleteItem] = useState<T | null>(null);
@@ -33,27 +35,40 @@ export function useDeleteConfirmation<T extends { id: number; title?: string }>(
     });
   };
 
-  const DeleteDialog = () => (
-    <AlertDialog open={!!deleteItem} onOpenChange={() => setDeleteItem(null)}>
-      <AlertDialogContent>
-        <AlertDialogHeader>
-          <AlertDialogTitle>Are you sure?</AlertDialogTitle>
-          <AlertDialogDescription>
-            This will permanently delete "{deleteItem?.title}". This action
-            cannot be undone.
-          </AlertDialogDescription>
-        </AlertDialogHeader>
-        <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction
-            onClick={() => deleteItem && handleDelete(deleteItem)}
-          >
-            Delete
-          </AlertDialogAction>
-        </AlertDialogFooter>
-      </AlertDialogContent>
-    </AlertDialog>
-  );
+  const DeleteDialog = () => {
+    const displayTitle = deleteItem && getTitle ? getTitle(deleteItem) : null;
+    
+    return (
+      <AlertDialog
+        open={!!deleteItem}
+        onOpenChange={(open) => {
+          if (!open) setDeleteItem(null);
+        }}
+      >
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+            <AlertDialogDescription>
+              {displayTitle ? (
+                <>This will permanently delete "{displayTitle}". This action cannot be undone.</>
+              ) : (
+                "This action cannot be undone."
+              )}
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction
+              onClick={() => deleteItem && handleDelete(deleteItem)}
+              className="bg-destructive hover:bg-destructive/90"
+            >
+              Delete
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+    );
+  };
 
   return {
     deleteItem,

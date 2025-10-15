@@ -19,7 +19,7 @@ class PostController extends Controller
 
     public function index(): Response
     {
-        return Inertia::render('Posts/Index', [
+        return Inertia::render('admin/posts/index', [
             'posts' => Post::with('category')
                 ->orderBy('created_at', 'desc')
                 ->get()
@@ -39,7 +39,7 @@ class PostController extends Controller
 
     public function create(): Response
     {
-        return Inertia::render('Posts/Create', [
+        return Inertia::render('admin/posts/create', [
             'categories' => PostCategory::all(['id', 'name']),
             'postTypes' => PostType::options(),
         ]);
@@ -85,7 +85,7 @@ class PostController extends Controller
 
     public function edit(Post $post): Response
     {
-        return Inertia::render('Posts/Edit', [
+        return Inertia::render('admin/posts/edit', [
             'post' => [
                 'id' => $post->id,
                 'category_id' => $post->category_id,

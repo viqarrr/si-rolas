@@ -2,7 +2,7 @@ import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFo
 /**
 * @see \App\Http\Controllers\WorkController::index
 * @see app/Http/Controllers/WorkController.php:22
-* @route '/karya'
+* @route '/admin/karya'
 */
 export const index = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: index.url(options),
@@ -11,13 +11,13 @@ export const index = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 index.definition = {
     methods: ["get","head"],
-    url: '/karya',
+    url: '/admin/karya',
 } satisfies RouteDefinition<["get","head"]>
 
 /**
 * @see \App\Http\Controllers\WorkController::index
 * @see app/Http/Controllers/WorkController.php:22
-* @route '/karya'
+* @route '/admin/karya'
 */
 index.url = (options?: RouteQueryOptions) => {
     return index.definition.url + queryParams(options)
@@ -26,7 +26,7 @@ index.url = (options?: RouteQueryOptions) => {
 /**
 * @see \App\Http\Controllers\WorkController::index
 * @see app/Http/Controllers/WorkController.php:22
-* @route '/karya'
+* @route '/admin/karya'
 */
 index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: index.url(options),
@@ -36,7 +36,7 @@ index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 /**
 * @see \App\Http\Controllers\WorkController::index
 * @see app/Http/Controllers/WorkController.php:22
-* @route '/karya'
+* @route '/admin/karya'
 */
 index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: index.url(options),
@@ -46,7 +46,7 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 /**
 * @see \App\Http\Controllers\WorkController::index
 * @see app/Http/Controllers/WorkController.php:22
-* @route '/karya'
+* @route '/admin/karya'
 */
 const indexForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: index.url(options),
@@ -56,7 +56,7 @@ const indexForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => (
 /**
 * @see \App\Http\Controllers\WorkController::index
 * @see app/Http/Controllers/WorkController.php:22
-* @route '/karya'
+* @route '/admin/karya'
 */
 indexForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: index.url(options),
@@ -66,7 +66,7 @@ indexForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
 /**
 * @see \App\Http\Controllers\WorkController::index
 * @see app/Http/Controllers/WorkController.php:22
-* @route '/karya'
+* @route '/admin/karya'
 */
 indexForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: index.url({
@@ -83,7 +83,7 @@ index.form = indexForm
 /**
 * @see \App\Http\Controllers\WorkController::create
 * @see app/Http/Controllers/WorkController.php:47
-* @route '/karya/create'
+* @route '/admin/karya/create'
 */
 export const create = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: create.url(options),
@@ -92,13 +92,13 @@ export const create = (options?: RouteQueryOptions): RouteDefinition<'get'> => (
 
 create.definition = {
     methods: ["get","head"],
-    url: '/karya/create',
+    url: '/admin/karya/create',
 } satisfies RouteDefinition<["get","head"]>
 
 /**
 * @see \App\Http\Controllers\WorkController::create
 * @see app/Http/Controllers/WorkController.php:47
-* @route '/karya/create'
+* @route '/admin/karya/create'
 */
 create.url = (options?: RouteQueryOptions) => {
     return create.definition.url + queryParams(options)
@@ -107,7 +107,7 @@ create.url = (options?: RouteQueryOptions) => {
 /**
 * @see \App\Http\Controllers\WorkController::create
 * @see app/Http/Controllers/WorkController.php:47
-* @route '/karya/create'
+* @route '/admin/karya/create'
 */
 create.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: create.url(options),
@@ -117,7 +117,7 @@ create.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 /**
 * @see \App\Http\Controllers\WorkController::create
 * @see app/Http/Controllers/WorkController.php:47
-* @route '/karya/create'
+* @route '/admin/karya/create'
 */
 create.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: create.url(options),
@@ -127,7 +127,7 @@ create.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 /**
 * @see \App\Http\Controllers\WorkController::create
 * @see app/Http/Controllers/WorkController.php:47
-* @route '/karya/create'
+* @route '/admin/karya/create'
 */
 const createForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: create.url(options),
@@ -137,7 +137,7 @@ const createForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => 
 /**
 * @see \App\Http\Controllers\WorkController::create
 * @see app/Http/Controllers/WorkController.php:47
-* @route '/karya/create'
+* @route '/admin/karya/create'
 */
 createForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: create.url(options),
@@ -147,7 +147,7 @@ createForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
 /**
 * @see \App\Http\Controllers\WorkController::create
 * @see app/Http/Controllers/WorkController.php:47
-* @route '/karya/create'
+* @route '/admin/karya/create'
 */
 createForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: create.url({
@@ -164,7 +164,7 @@ create.form = createForm
 /**
 * @see \App\Http\Controllers\WorkController::store
 * @see app/Http/Controllers/WorkController.php:54
-* @route '/karya'
+* @route '/admin/karya'
 */
 export const store = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: store.url(options),
@@ -173,13 +173,13 @@ export const store = (options?: RouteQueryOptions): RouteDefinition<'post'> => (
 
 store.definition = {
     methods: ["post"],
-    url: '/karya',
+    url: '/admin/karya',
 } satisfies RouteDefinition<["post"]>
 
 /**
 * @see \App\Http\Controllers\WorkController::store
 * @see app/Http/Controllers/WorkController.php:54
-* @route '/karya'
+* @route '/admin/karya'
 */
 store.url = (options?: RouteQueryOptions) => {
     return store.definition.url + queryParams(options)
@@ -188,7 +188,7 @@ store.url = (options?: RouteQueryOptions) => {
 /**
 * @see \App\Http\Controllers\WorkController::store
 * @see app/Http/Controllers/WorkController.php:54
-* @route '/karya'
+* @route '/admin/karya'
 */
 store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: store.url(options),
@@ -198,7 +198,7 @@ store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 /**
 * @see \App\Http\Controllers\WorkController::store
 * @see app/Http/Controllers/WorkController.php:54
-* @route '/karya'
+* @route '/admin/karya'
 */
 const storeForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: store.url(options),
@@ -208,7 +208,7 @@ const storeForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => 
 /**
 * @see \App\Http\Controllers\WorkController::store
 * @see app/Http/Controllers/WorkController.php:54
-* @route '/karya'
+* @route '/admin/karya'
 */
 storeForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: store.url(options),
@@ -220,7 +220,7 @@ store.form = storeForm
 /**
 * @see \App\Http\Controllers\WorkController::edit
 * @see app/Http/Controllers/WorkController.php:91
-* @route '/karya/{karya}/edit'
+* @route '/admin/karya/{karya}/edit'
 */
 export const edit = (args: { karya: string | number } | [karya: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: edit.url(args, options),
@@ -229,13 +229,13 @@ export const edit = (args: { karya: string | number } | [karya: string | number 
 
 edit.definition = {
     methods: ["get","head"],
-    url: '/karya/{karya}/edit',
+    url: '/admin/karya/{karya}/edit',
 } satisfies RouteDefinition<["get","head"]>
 
 /**
 * @see \App\Http\Controllers\WorkController::edit
 * @see app/Http/Controllers/WorkController.php:91
-* @route '/karya/{karya}/edit'
+* @route '/admin/karya/{karya}/edit'
 */
 edit.url = (args: { karya: string | number } | [karya: string | number ] | string | number, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
@@ -262,7 +262,7 @@ edit.url = (args: { karya: string | number } | [karya: string | number ] | strin
 /**
 * @see \App\Http\Controllers\WorkController::edit
 * @see app/Http/Controllers/WorkController.php:91
-* @route '/karya/{karya}/edit'
+* @route '/admin/karya/{karya}/edit'
 */
 edit.get = (args: { karya: string | number } | [karya: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: edit.url(args, options),
@@ -272,7 +272,7 @@ edit.get = (args: { karya: string | number } | [karya: string | number ] | strin
 /**
 * @see \App\Http\Controllers\WorkController::edit
 * @see app/Http/Controllers/WorkController.php:91
-* @route '/karya/{karya}/edit'
+* @route '/admin/karya/{karya}/edit'
 */
 edit.head = (args: { karya: string | number } | [karya: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: edit.url(args, options),
@@ -282,7 +282,7 @@ edit.head = (args: { karya: string | number } | [karya: string | number ] | stri
 /**
 * @see \App\Http\Controllers\WorkController::edit
 * @see app/Http/Controllers/WorkController.php:91
-* @route '/karya/{karya}/edit'
+* @route '/admin/karya/{karya}/edit'
 */
 const editForm = (args: { karya: string | number } | [karya: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: edit.url(args, options),
@@ -292,7 +292,7 @@ const editForm = (args: { karya: string | number } | [karya: string | number ] |
 /**
 * @see \App\Http\Controllers\WorkController::edit
 * @see app/Http/Controllers/WorkController.php:91
-* @route '/karya/{karya}/edit'
+* @route '/admin/karya/{karya}/edit'
 */
 editForm.get = (args: { karya: string | number } | [karya: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: edit.url(args, options),
@@ -302,7 +302,7 @@ editForm.get = (args: { karya: string | number } | [karya: string | number ] | s
 /**
 * @see \App\Http\Controllers\WorkController::edit
 * @see app/Http/Controllers/WorkController.php:91
-* @route '/karya/{karya}/edit'
+* @route '/admin/karya/{karya}/edit'
 */
 editForm.head = (args: { karya: string | number } | [karya: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: edit.url(args, {
@@ -319,7 +319,7 @@ edit.form = editForm
 /**
 * @see \App\Http\Controllers\WorkController::update
 * @see app/Http/Controllers/WorkController.php:118
-* @route '/karya/{karya}'
+* @route '/admin/karya/{karya}'
 */
 export const update = (args: { karya: string | number } | [karya: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
     url: update.url(args, options),
@@ -328,13 +328,13 @@ export const update = (args: { karya: string | number } | [karya: string | numbe
 
 update.definition = {
     methods: ["put","patch"],
-    url: '/karya/{karya}',
+    url: '/admin/karya/{karya}',
 } satisfies RouteDefinition<["put","patch"]>
 
 /**
 * @see \App\Http\Controllers\WorkController::update
 * @see app/Http/Controllers/WorkController.php:118
-* @route '/karya/{karya}'
+* @route '/admin/karya/{karya}'
 */
 update.url = (args: { karya: string | number } | [karya: string | number ] | string | number, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
@@ -361,7 +361,7 @@ update.url = (args: { karya: string | number } | [karya: string | number ] | str
 /**
 * @see \App\Http\Controllers\WorkController::update
 * @see app/Http/Controllers/WorkController.php:118
-* @route '/karya/{karya}'
+* @route '/admin/karya/{karya}'
 */
 update.put = (args: { karya: string | number } | [karya: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
     url: update.url(args, options),
@@ -371,7 +371,7 @@ update.put = (args: { karya: string | number } | [karya: string | number ] | str
 /**
 * @see \App\Http\Controllers\WorkController::update
 * @see app/Http/Controllers/WorkController.php:118
-* @route '/karya/{karya}'
+* @route '/admin/karya/{karya}'
 */
 update.patch = (args: { karya: string | number } | [karya: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
     url: update.url(args, options),
@@ -381,7 +381,7 @@ update.patch = (args: { karya: string | number } | [karya: string | number ] | s
 /**
 * @see \App\Http\Controllers\WorkController::update
 * @see app/Http/Controllers/WorkController.php:118
-* @route '/karya/{karya}'
+* @route '/admin/karya/{karya}'
 */
 const updateForm = (args: { karya: string | number } | [karya: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: update.url(args, {
@@ -396,7 +396,7 @@ const updateForm = (args: { karya: string | number } | [karya: string | number ]
 /**
 * @see \App\Http\Controllers\WorkController::update
 * @see app/Http/Controllers/WorkController.php:118
-* @route '/karya/{karya}'
+* @route '/admin/karya/{karya}'
 */
 updateForm.put = (args: { karya: string | number } | [karya: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: update.url(args, {
@@ -411,7 +411,7 @@ updateForm.put = (args: { karya: string | number } | [karya: string | number ] |
 /**
 * @see \App\Http\Controllers\WorkController::update
 * @see app/Http/Controllers/WorkController.php:118
-* @route '/karya/{karya}'
+* @route '/admin/karya/{karya}'
 */
 updateForm.patch = (args: { karya: string | number } | [karya: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: update.url(args, {
@@ -428,7 +428,7 @@ update.form = updateForm
 /**
 * @see \App\Http\Controllers\WorkController::destroy
 * @see app/Http/Controllers/WorkController.php:155
-* @route '/karya/{karya}'
+* @route '/admin/karya/{karya}'
 */
 export const destroy = (args: { karya: string | number } | [karya: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
     url: destroy.url(args, options),
@@ -437,13 +437,13 @@ export const destroy = (args: { karya: string | number } | [karya: string | numb
 
 destroy.definition = {
     methods: ["delete"],
-    url: '/karya/{karya}',
+    url: '/admin/karya/{karya}',
 } satisfies RouteDefinition<["delete"]>
 
 /**
 * @see \App\Http\Controllers\WorkController::destroy
 * @see app/Http/Controllers/WorkController.php:155
-* @route '/karya/{karya}'
+* @route '/admin/karya/{karya}'
 */
 destroy.url = (args: { karya: string | number } | [karya: string | number ] | string | number, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
@@ -470,7 +470,7 @@ destroy.url = (args: { karya: string | number } | [karya: string | number ] | st
 /**
 * @see \App\Http\Controllers\WorkController::destroy
 * @see app/Http/Controllers/WorkController.php:155
-* @route '/karya/{karya}'
+* @route '/admin/karya/{karya}'
 */
 destroy.delete = (args: { karya: string | number } | [karya: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
     url: destroy.url(args, options),
@@ -480,7 +480,7 @@ destroy.delete = (args: { karya: string | number } | [karya: string | number ] |
 /**
 * @see \App\Http\Controllers\WorkController::destroy
 * @see app/Http/Controllers/WorkController.php:155
-* @route '/karya/{karya}'
+* @route '/admin/karya/{karya}'
 */
 const destroyForm = (args: { karya: string | number } | [karya: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: destroy.url(args, {
@@ -495,7 +495,7 @@ const destroyForm = (args: { karya: string | number } | [karya: string | number 
 /**
 * @see \App\Http\Controllers\WorkController::destroy
 * @see app/Http/Controllers/WorkController.php:155
-* @route '/karya/{karya}'
+* @route '/admin/karya/{karya}'
 */
 destroyForm.delete = (args: { karya: string | number } | [karya: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: destroy.url(args, {

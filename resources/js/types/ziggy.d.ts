@@ -2,175 +2,269 @@
 export module 'ziggy-js' {
   interface RouteList {
     "home": [],
+    "partnerships.create": [],
+    "partnerships.store": [],
+    "job-postings.create": [],
+    "job-postings.store": [],
+    "info-lowongan.index": [],
+    "info-lowongan.show": [
+        {
+            "name": "jobPosting",
+            "required": true,
+            "binding": "id"
+        }
+    ],
     "login": [],
     "login.store": [],
-    "logout": [],
-    "dashboard": [],
-    "visi-misi.index": [],
-    "visi-misi.create": [],
-    "visi-misi.store": [],
-    "visi-misi.edit": [
+    "admin.logout": [],
+    "admin.dashboard": [],
+    "admin.vission-misssions.index": [],
+    "admin.vission-misssions.create": [],
+    "admin.vission-misssions.store": [],
+    "admin.vission-misssions.edit": [
         {
             "name": "visi_misi",
             "required": true
         }
     ],
-    "visi-misi.update": [
+    "admin.vission-misssions.update": [
         {
             "name": "visi_misi",
             "required": true
         }
     ],
-    "visi-misi.destroy": [
+    "admin.vission-misssions.destroy": [
         {
             "name": "visi_misi",
             "required": true
         }
     ],
-    "struktur-organisasi.index": [],
-    "struktur-organisasi.create": [],
-    "struktur-organisasi.store": [],
-    "struktur-organisasi.edit": [
+    "admin.organizational-structures.index": [],
+    "admin.organizational-structures.create": [],
+    "admin.organizational-structures.store": [],
+    "admin.organizational-structures.edit": [
         {
             "name": "struktur_organisasi",
             "required": true
         }
     ],
-    "struktur-organisasi.update": [
+    "admin.organizational-structures.update": [
         {
             "name": "struktur_organisasi",
             "required": true
         }
     ],
-    "struktur-organisasi.destroy": [
+    "admin.organizational-structures.destroy": [
         {
             "name": "struktur_organisasi",
             "required": true
         }
     ],
-    "sejarah.index": [],
-    "sejarah.create": [],
-    "sejarah.store": [],
-    "sejarah.edit": [
+    "admin.histories.index": [],
+    "admin.histories.create": [],
+    "admin.histories.store": [],
+    "admin.histories.edit": [
         {
             "name": "sejarah",
             "required": true
         }
     ],
-    "sejarah.update": [
+    "admin.histories.update": [
         {
             "name": "sejarah",
             "required": true
         }
     ],
-    "sejarah.destroy": [
+    "admin.histories.destroy": [
         {
             "name": "sejarah",
             "required": true
         }
     ],
-    "postingan.index": [],
-    "postingan.create": [],
-    "postingan.store": [],
-    "postingan.edit": [
+    "admin.posts.index": [],
+    "admin.posts.create": [],
+    "admin.posts.store": [],
+    "admin.posts.edit": [
         {
             "name": "postingan",
             "required": true
         }
     ],
-    "postingan.update": [
+    "admin.posts.update": [
         {
             "name": "postingan",
             "required": true
         }
     ],
-    "postingan.destroy": [
+    "admin.posts.destroy": [
         {
             "name": "postingan",
             "required": true
         }
     ],
-    "jurusan.index": [],
-    "jurusan.create": [],
-    "jurusan.store": [],
-    "jurusan.edit": [
+    "admin.majors.index": [],
+    "admin.majors.create": [],
+    "admin.majors.store": [],
+    "admin.majors.edit": [
         {
             "name": "jurusan",
             "required": true
         }
     ],
-    "jurusan.update": [
+    "admin.majors.update": [
         {
             "name": "jurusan",
             "required": true
         }
     ],
-    "jurusan.destroy": [
+    "admin.majors.destroy": [
         {
             "name": "jurusan",
             "required": true
         }
     ],
-    "karya.index": [],
-    "karya.create": [],
-    "karya.store": [],
-    "karya.edit": [
+    "admin.works.index": [],
+    "admin.works.create": [],
+    "admin.works.store": [],
+    "admin.works.edit": [
         {
             "name": "karya",
             "required": true
         }
     ],
-    "karya.update": [
+    "admin.works.update": [
         {
             "name": "karya",
             "required": true
         }
     ],
-    "karya.destroy": [
+    "admin.works.destroy": [
         {
             "name": "karya",
             "required": true
         }
     ],
-    "kontak.index": [],
-    "kontak.create": [],
-    "kontak.store": [],
-    "kontak.edit": [
+    "admin.contacts.index": [],
+    "admin.contacts.create": [],
+    "admin.contacts.store": [],
+    "admin.contacts.edit": [
         {
             "name": "kontak",
             "required": true
         }
     ],
-    "kontak.update": [
+    "admin.contacts.update": [
         {
             "name": "kontak",
             "required": true
         }
     ],
-    "kontak.destroy": [
+    "admin.contacts.destroy": [
         {
             "name": "kontak",
             "required": true
         }
     ],
-    "pesan.index": [],
-    "pesan.show": [
+    "admin.messages.index": [],
+    "admin.messages.store": [],
+    "admin.messages.show": [
         {
-            "name": "inquiry",
+            "name": "pesan",
+            "required": true
+        }
+    ],
+    "admin.messages.edit": [
+        {
+            "name": "pesan",
+            "required": true
+        }
+    ],
+    "admin.messages.update": [
+        {
+            "name": "pesan",
+            "required": true
+        }
+    ],
+    "admin.messages.destroy": [
+        {
+            "name": "pesan",
+            "required": true
+        }
+    ],
+    "admin.partnerships.index": [],
+    "admin.partnerships.show": [
+        {
+            "name": "partnership",
             "required": true,
             "binding": "id"
         }
     ],
-    "pesan.update": [
+    "admin.partnerships.approve": [
         {
-            "name": "inquiry",
+            "name": "partnership",
             "required": true,
             "binding": "id"
         }
     ],
-    "pesan.destroy": [
+    "admin.partnerships.reject": [
         {
-            "name": "inquiry",
+            "name": "partnership",
+            "required": true,
+            "binding": "id"
+        }
+    ],
+    "admin.job-postings.index": [],
+    "admin.job-postings.show": [
+        {
+            "name": "jobPosting",
+            "required": true,
+            "binding": "id"
+        }
+    ],
+    "admin.job-postings.approve": [
+        {
+            "name": "jobPosting",
+            "required": true,
+            "binding": "id"
+        }
+    ],
+    "admin.job-postings.reject": [
+        {
+            "name": "jobPosting",
+            "required": true,
+            "binding": "id"
+        }
+    ],
+    "company.dashboard": [],
+    "company.profile.edit": [],
+    "company.profile.update": [],
+    "company.job-postings.index": [],
+    "company.job-postings.create": [],
+    "company.job-postings.store": [],
+    "company.job-postings.edit": [
+        {
+            "name": "jobPosting",
+            "required": true,
+            "binding": "id"
+        }
+    ],
+    "company.job-postings.update": [
+        {
+            "name": "jobPosting",
+            "required": true,
+            "binding": "id"
+        }
+    ],
+    "company.job-postings.toggle": [
+        {
+            "name": "jobPosting",
+            "required": true,
+            "binding": "id"
+        }
+    ],
+    "company.job-postings.destroy": [
+        {
+            "name": "jobPosting",
             "required": true,
             "binding": "id"
         }
@@ -206,6 +300,7 @@ export module 'ziggy-js' {
     "verification.send": [],
     "password.confirm": [],
     "password.confirm.store": [],
+    "logout": [],
     "storage.local": [
         {
             "name": "path",

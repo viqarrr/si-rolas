@@ -6,7 +6,7 @@ import FileUploadInertia from '@/components/file-upload';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import type { BreadcrumbItem, OrganizationalStructure } from '@/types';
+import type { BreadcrumbItem, OrganizationalStructure, OrganizationalStructureFormData } from '@/types';
 
 type FormData = Omit<OrganizationalStructure,"id">;
 
@@ -15,13 +15,13 @@ interface OrganizationalStructuresCreateProps {
 }
 
 const breadcrumbs: BreadcrumbItem[] = [
-    { title: 'Dashboard', href: '/' },
-    { title: 'Struktur Organisasi', href: '/struktur-organisasi' },
-    { title: 'Tambah Data', href: '/struktur-organisasi/create' },
+    { title: 'Dashboard', href: '/admin/dashboard' },
+    { title: 'Struktur Organisasi', href: '/admin/struktur-organisasi' },
+    { title: 'Tambah Data', href: '/admin/struktur-organisasi/create' },
 ];
 
 export default function OrganizationalStructuresCreate({ errors = {} }: OrganizationalStructuresCreateProps) {
-    const { data, setData, post, processing, progress } = useForm<FormData>({
+    const { data, setData, post, processing, progress } = useForm<OrganizationalStructureFormData>({
         name: '',
         position: '',
         photo: null as unknown as File,
@@ -29,7 +29,7 @@ export default function OrganizationalStructuresCreate({ errors = {} }: Organiza
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        post(route('organizational-structures.store'));
+        post(route('admin.organizational-structures.store'));
     };
 
     return (
@@ -39,18 +39,18 @@ export default function OrganizationalStructuresCreate({ errors = {} }: Organiza
                     <form onSubmit={handleSubmit}>
                         <Card>
                             <CardHeader>
-                                <CardTitle className="text-2xl font-bold tracking-tight">Add Organization Member</CardTitle>
+                                <CardTitle className="text-2xl font-bold tracking-tight">Tambah Anggota Organisasi</CardTitle>
                             </CardHeader>
                             <CardContent>
                                 <div className="space-y-6">
                                     {/* Name */}
                                     <div className="space-y-2">
-                                        <Label htmlFor="name">Full Name *</Label>
+                                        <Label htmlFor="name">Nama Lengkap *</Label>
                                         <Input
                                             id="name"
                                             value={data.name}
                                             onChange={(e) => setData('name', e.target.value)}
-                                            placeholder="e.g., Dr. John Smith"
+                                            placeholder="contoh: Dr. John Smith"
                                             className={errors.name ? 'border-red-500' : ''}
                                         />
                                         {errors.name && <p className="text-sm text-red-500">{errors.name}</p>}
@@ -58,12 +58,12 @@ export default function OrganizationalStructuresCreate({ errors = {} }: Organiza
 
                                     {/* Position */}
                                     <div className="space-y-2">
-                                        <Label htmlFor="position">Position *</Label>
+                                        <Label htmlFor="position">Jabatan *</Label>
                                         <Input
                                             id="position"
                                             value={data.position}
                                             onChange={(e) => setData('position', e.target.value)}
-                                            placeholder="e.g., Principal, Vice Principal"
+                                            placeholder="contoh: Kepala Sekolah, Wakil Kepala Sekolah"
                                             className={errors.position ? 'border-red-500' : ''}
                                         />
                                         {errors.position && <p className="text-sm text-red-500">{errors.position}</p>}
@@ -71,11 +71,11 @@ export default function OrganizationalStructuresCreate({ errors = {} }: Organiza
 
                                     {/* Photo */}
                                     <div className="space-y-2">
-                                        <Label htmlFor="photo_file">Photo</Label>
+                                        <Label htmlFor="photo_file">Foto</Label>
                                         <FileUploadInertia
                                             value={data.photo}
                                             onChange={(file) => setData('photo', file as File)}
-                                            placeholder="Upload a photo (JPG, PNG, WebP - max 5MB)"
+                                            placeholder="Unggah foto (JPG, PNG, WebP - maks 5MB)"
                                         />
                                         {errors.photo && <p className="text-sm text-red-500">{errors.photo}</p>}
                                     </div>
@@ -83,14 +83,14 @@ export default function OrganizationalStructuresCreate({ errors = {} }: Organiza
                                     {/* Actions */}
                                     <div className="flex items-center justify-end gap-4">
                                         <Button type="button" variant="outline" onClick={() => window.history.back()}>
-                                            Cancel
+                                            Batal
                                         </Button>
                                         <Button
                                             type="submit"
                                             disabled={processing}
                                         >
                                             <Save className="mr-2 h-4 w-4" />
-                                            {/* {processing ? "Saving..." : "Save Member"} */}
+                                            {processing ? "Menyimpan..." : "Simpan Anggota"}
                                         </Button>
                                     </div>
                                 </div>

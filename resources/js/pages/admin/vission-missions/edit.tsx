@@ -7,6 +7,7 @@ import AppLayout from '@/layouts/app-layout';
 import { type BreadcrumbItem, type PageProps, type VisionMission } from '@/types';
 import { useForm } from '@inertiajs/react';
 import { Save } from 'lucide-react';
+import { useEffect } from 'react';
 
 interface Props extends PageProps {
     visionMission: VisionMission;
@@ -28,14 +29,29 @@ const breadcrumbs: BreadcrumbItem[] = [
 ];
 
 export default function VisionMissionsEdit({ visionMission, errors }: Props) {
-    const { data, setData, put, processing } = useForm({
+    const { data, setData, post, processing } = useForm({
         title: visionMission.title,
         content: visionMission.content,
+        _method: 'PUT', 
     });
+
+        useEffect(() => {
+            if (visionMission) {
+                setData({
+                    title: visionMission.title || '',
+                    content: visionMission.content || '',
+                    _method: 'PUT',
+                });
+            }
+            console.log(visionMission);
+        }, [visionMission]);
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        put(route('vision-missions.update', { id: visionMission.id }));
+        post(route('vision-missions.update', { id: visionMission.id }), {
+            forceFormData: true,
+            preserveScroll: true,
+        });
     };
 
     return (

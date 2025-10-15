@@ -21,7 +21,7 @@ class WorkController extends Controller
 
     public function index(): Response
     {
-        return Inertia::render('Works/Index', [
+        return Inertia::render('admin/works/index', [
             'works' => Work::with(['major', 'images', 'links'])
                 ->withCount(['images', 'links'])
                 ->orderBy('created_at', 'desc')
@@ -46,7 +46,7 @@ class WorkController extends Controller
 
     public function create(): Response
     {
-        return Inertia::render('Works/Create', [
+        return Inertia::render('admin/works/create', [
             'majors' => Major::orderBy('name')->get(['id', 'name']),
         ]);
     }
@@ -90,7 +90,7 @@ class WorkController extends Controller
 
     public function edit(Work $work): Response
     {
-        return Inertia::render('Works/Edit', [
+        return Inertia::render('admin/works/edit', [
             'work' => [
                 'id' => $work->id,
                 'major_id' => $work->major_id,

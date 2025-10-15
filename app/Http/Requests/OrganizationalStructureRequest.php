@@ -17,10 +17,10 @@ class OrganizationalStructureRequest extends FormRequest
   public function rules(): array
   {
     return [
-      'parent_id' => 'nullable|exists:organizational_structures,id',
       'name' => 'required|string|max:255',
       'position' => 'required|string|max:255',
-      'photo_url' => 'required|string',
+      'photo' => 'nullable|image|max:5120',
+
     ];
   }
 }

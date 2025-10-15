@@ -35,6 +35,7 @@ class DatabaseSeeder extends Seeder
             // SchoolContactSeeder::class,
             // InquirySeeder::class,
             // HistorySeeder::class,
+            // JobPortalSeeder::class,
         ]);
     }
 }

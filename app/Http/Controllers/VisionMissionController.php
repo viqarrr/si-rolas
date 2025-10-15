@@ -26,7 +26,7 @@ class VisionMissionController extends Controller
     {
         VisionMission::create($request->validated());
 
-        return redirect()->route('vision-missions.index')
+        return redirect()->route('admin.vission-misssions.index')
             ->with('success', 'Vision Mission created successfully.');
     }
 
@@ -41,7 +41,7 @@ class VisionMissionController extends Controller
     {
         $visionMission->update($request->validated());
 
-        return redirect()->route('vision-missions.index')
+        return redirect()->route('admin.vission-misssions.index')
             ->with('success', 'Vision Mission updated successfully.');
     }
 
@@ -49,7 +49,7 @@ class VisionMissionController extends Controller
     {
         $visionMission->delete();
 
-        return redirect()->route('vision-missions.index')
+        return redirect()->route('admin.vission-misssions.index')
             ->with('success', 'Vision Mission deleted successfully.');
     }
 }

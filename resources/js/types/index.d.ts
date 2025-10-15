@@ -93,14 +93,34 @@ export interface VisionMission {
     id: number;
     title: string;
     content: string;
+    created_at: string;
 }
 
 export interface OrganizationalStructure {
     id: number;
     name: string;
+    parent_id?: number | null;
     position: string;
-    photo?: File | string | null;
+    parent?: OrganizationalStructure | null;
+    photo_url?: string | null;
+    photo_display_url?: string | null;
+    created_at?: string;
 }
+
+// Data yang dikirim dari backend (index, edit)
+export interface OrganizationalStructure {
+    id: number;
+    name: string;
+    position: string;
+    parent?: OrganizationalStructure | null;
+    photo_url?: string | null;
+    created_at?: string;
+}
+
+export type OrganizationalStructureFormData = Omit<OrganizationalStructure, 'id' | 'parent' | 'photo_url' | 'created_at'> & {
+    photo?: File | null;
+    parent_id?: number | null;
+};
 
 export interface History {
     id: number;

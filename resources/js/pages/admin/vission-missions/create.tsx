@@ -19,11 +19,11 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
     {
         title: 'Visi Misi',
-        href: '/visi-misi',
+        href: '/admin/visi-misi',
     },
     {
         title: 'Tambah Visi Misi',
-        href: '/visi-misi/create',
+        href: '/admin/visi-misi/create',
     },
 ];
 
@@ -35,7 +35,7 @@ export default function VisionMissionsCreate({ errors }: Props) {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        post(route('vision-missions.store'));
+        post(route('admin.vission-misssions.store'));
     };
 
     return (

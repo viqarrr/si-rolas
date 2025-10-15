@@ -12,7 +12,7 @@ class MajorController extends Controller
 {
     public function index(): Response
     {
-        return Inertia::render('Majors/Index', [
+        return Inertia::render('admin/major/index', [
             'majors' => Major::withCount(['competencies', 'jobProspects', 'works'])
                 ->orderBy('created_at', 'desc')
                 ->get(),
@@ -21,7 +21,7 @@ class MajorController extends Controller
 
     public function create(): Response
     {
-        return Inertia::render('Majors/Create');
+        return Inertia::render('admin/major/create');
     }
 
     public function store(MajorRequest $request): RedirectResponse
@@ -34,7 +34,7 @@ class MajorController extends Controller
 
     public function edit(Major $major): Response
     {
-        return Inertia::render('Majors/Edit', [
+        return Inertia::render('admin/major/edit', [
             'major' => $major,
         ]);
     }

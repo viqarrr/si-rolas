@@ -1,4 +1,4 @@
-import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
@@ -15,70 +15,35 @@ interface Props extends PageProps {
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'Dashboard',
-        href: '/',
+        href: '/admin/dashboard',
     },
     {
         title: 'Struktur Organisasi',
-        href: '/struktur-organisasi',
+        href: '/admin/struktur-organisasi',
     },
 ];
 
-const organizationalStructuresDummyData = [
-    {
-        id: 1,
-        name: 'Dr. Ahmad Wijaya, M.Pd.',
-        position: 'Principal',
-        photo_url: 'organizational-structure/principal.jpg',
-        created_at: '2024-01-10T08:00:00.000Z',
-    },
-    {
-        id: 2,
-        name: 'Siti Nurhaliza, S.Pd., M.M.',
-        position: 'Vice Principal - Academic Affairs',
-        photo_url: 'organizational-structure/vice-academic.jpg',
-        created_at: '2024-01-10T08:30:00.000Z',
-    },
-    {
-        id: 3,
-        name: 'Budi Santoso, S.Pd.',
-        position: 'Vice Principal - Student Affairs',
-        photo_url: 'organizational-structure/vice-student.jpg',
-        created_at: '2024-01-10T09:00:00.000Z',
-    },
-    {
-        id: 4,
-        name: 'Indira Sari, S.Kom.',
-        position: 'Head of IT Department',
-        photo_url: 'organizational-structure/head-it.jpg',
-        created_at: '2024-01-11T08:00:00.000Z',
-    },
-    {
-        id: 5,
-        name: 'Raden Mas Suryo, S.T.',
-        position: 'Head of Engineering Department',
-        photo_url: 'organizational-structure/head-engineering.jpg',
-        created_at: '2024-01-11T08:30:00.000Z',
-    },
-];
-
-export default function OrganizationalStructuresIndex({ organizationalStructures = organizationalStructuresDummyData }: Props) {
+export default function OrganizationalStructuresIndex({ organizationalStructures }: Props) {
     const { setDeleteItem, DeleteDialog } = useDeleteConfirmation<OrganizationalStructure>({
-        routeName: 'organizational-structure.destroy',
-        getParams: (item) => ({ id: item.id }),
+        routeName: 'admin.organizational-structures.destroy',
+        getParams: (item) => ({ id: item.id, title: item.name }),
+        getTitle: (item) => item.name,
     });
+
+    console.log(organizationalStructures);
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <div className="flex h-full flex-1 flex-col gap-4 overflow-x-auto rounded-xl p-4">
                 <div className="space-y-6">
                     <div className="flex items-center justify-between">
                         <div>
-                            <h1 className="text-3xl font-bold tracking-tight">Organizational Structure</h1>
-                            <p className="text-muted-foreground">Manage your organization's leadership and structure</p>
+                            <h1 className="text-3xl font-bold tracking-tight">Struktur Organisasi</h1>
+                            <p className="text-muted-foreground">Kelola kepemimpinan dan struktur organisasi Anda</p>
                         </div>
                         <Button asChild>
-                            <Link href={route('organizational-structures.create')}>
+                            <Link href={route('admin.organizational-structures.create')}>
                                 <Plus className="mr-2 h-4 w-4" />
-                                Add Work
+                                Tambah Posisi
                             </Link>
                         </Button>
                     </div>
@@ -87,28 +52,28 @@ export default function OrganizationalStructuresIndex({ organizationalStructures
                         <Card>
                             <CardContent className="flex flex-col items-center justify-center py-16">
                                 <Users className="mb-4 h-12 w-12 text-muted-foreground" />
-                                <h3 className="mb-2 text-lg font-semibold">No organizational structure</h3>
-                                <p className="mb-6 text-center text-muted-foreground">Get started by adding your first organizational member.</p>
-                                <Button onClick={() => router.visit(route('organizational-structures.create'))}>
+                                <h3 className="mb-2 text-lg font-semibold">Belum ada struktur organisasi</h3>
+                                <p className="mb-6 text-center text-muted-foreground">Mulai dengan menambahkan anggota organisasi pertama Anda.</p>
+                                <Button onClick={() => router.visit(route('admin.organizational-structures.create'))}>
                                     <Plus className="mr-2 h-4 w-4" />
-                                    Add Member
+                                    Tambah Posisi
                                 </Button>
                             </CardContent>
                         </Card>
                     ) : (
                         <Card>
                             <CardHeader>
-                                <CardTitle>Organization Members</CardTitle>
-                                <CardDescription>A list of all members in your organizational structure</CardDescription>
+                                <CardTitle>Anggota Organisasi</CardTitle>
+                                <CardDescription>Daftar semua anggota dalam struktur organisasi Anda</CardDescription>
                             </CardHeader>
                             <CardContent>
                                 <Table>
                                     <TableHeader>
                                         <TableRow>
-                                            <TableHead>Member</TableHead>
-                                            <TableHead>Position</TableHead>
-                                            <TableHead>Created</TableHead>
-                                            <TableHead className="text-right">Actions</TableHead>
+                                            <TableHead>Anggota</TableHead>
+                                            <TableHead>Jabatan</TableHead>
+                                            <TableHead>Dibuat</TableHead>
+                                            <TableHead className="text-right">Aksi</TableHead>
                                         </TableRow>
                                     </TableHeader>
                                     <TableBody>
@@ -117,13 +82,21 @@ export default function OrganizationalStructuresIndex({ organizationalStructures
                                                 <TableCell>
                                                     <div className="flex items-center gap-3">
                                                         <Avatar>
-                                                            <AvatarFallback>
-                                                                {item.name
-                                                                    .split(' ')
-                                                                    .map((n) => n[0])
-                                                                    .join('')
-                                                                    .toUpperCase()}
-                                                            </AvatarFallback>
+                                                            {item.photo_url ? (
+                                                                <AvatarImage
+                                                                  src={item.photo_url}
+                                                                  alt={item.name}
+                                                                  className="object-cover"
+                                                                />
+                                                            ) : (
+                                                                <AvatarFallback>
+                                                                    {item.name
+                                                                        .split(' ')
+                                                                        .map((n) => n[0])
+                                                                        .join('')
+                                                                        .toUpperCase()}
+                                                                </AvatarFallback>
+                                                            )}
                                                         </Avatar>
                                                         <div>
                                                             <div className="font-medium">{item.name}</div>
@@ -132,14 +105,16 @@ export default function OrganizationalStructuresIndex({ organizationalStructures
                                                 </TableCell>
                                                 <TableCell>{item.position}</TableCell>
                                                 <TableCell className="text-muted-foreground">
-                                                    {new Date(item.created_at).toLocaleDateString()}
+                                                    {item.created_at ? new Date(item.created_at).toLocaleDateString() : '-'}
                                                 </TableCell>
                                                 <TableCell className="text-right">
                                                     <div className="flex items-center justify-end gap-2">
                                                         <Button
                                                             variant="outline"
                                                             size="sm"
-                                                            onClick={() => router.visit(route('organizational-structures.edit', { id: item.id }))}
+                                                            onClick={() =>
+                                                                router.visit(route('admin.organizational-structures.edit', { id: item.id }))
+                                                            }
                                                         >
                                                             <Edit className="h-4 w-4" />
                                                         </Button>

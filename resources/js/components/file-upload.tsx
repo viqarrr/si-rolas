@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { Upload, X, FileImage } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -11,6 +11,7 @@ interface FileUploadInertiaProps {
   maxSize?: number;
   className?: string;
   placeholder?: string;
+  previewUrl?: string | null; // <--- Tambahan penting
 }
 
 const FileUploadInertia: React.FC<FileUploadInertiaProps> = ({
@@ -20,38 +21,49 @@ const FileUploadInertia: React.FC<FileUploadInertiaProps> = ({
   accept = 'image/*',
   maxSize = 5 * 1024 * 1024, // 5MB
   className = '',
-  placeholder = 'Drag & drop files here, or click to select'
+  placeholder = 'Drag & drop files here, or click to select',
+  previewUrl = null, // default null
 }) => {
   const [previews, setPreviews] = useState<string[]>([]);
 
-  const onDrop = useCallback((acceptedFiles: File[]) => {
-    if (multiple) {
-      onChange(acceptedFiles);
-      // Generate previews
-      const newPreviews = acceptedFiles.map(file => URL.createObjectURL(file));
-      setPreviews(newPreviews);
-    } else {
-      const file = acceptedFiles[0];
-      if (file) {
-        onChange(file);
-        setPreviews([URL.createObjectURL(file)]);
+  /** 🧠 Handle file drop */
+  const onDrop = useCallback(
+    (acceptedFiles: File[]) => {
+      if (multiple) {
+        onChange(acceptedFiles);
+        setPreviews(acceptedFiles.map((file) => URL.createObjectURL(file)));
+      } else {
+        const file = acceptedFiles[0];
+        if (file) {
+          onChange(file);
+          setPreviews([URL.createObjectURL(file)]);
+        }
       }
-    }
-  }, [multiple, onChange]);
+    },
+    [multiple, onChange]
+  );
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     accept: { [accept]: [] },
     multiple,
-    maxSize
+    maxSize,
   });
+
+  /** 🧩 Gunakan preview dari backend (edit mode) */
+  useEffect(() => {
+    if (!value && previewUrl) {
+      setPreviews([previewUrl]);
+    } else if (!value && !previewUrl) {
+      setPreviews([]);
+    }
+  }, [value, previewUrl]);
 
   const removeFile = (index: number) => {
     if (multiple && Array.isArray(value)) {
       const newFiles = (value as File[]).filter((_, i) => i !== index);
       onChange(newFiles.length > 0 ? newFiles : null);
-      const newPreviews = previews.filter((_, i) => i !== index);
-      setPreviews(newPreviews);
+      setPreviews(previews.filter((_, i) => i !== index));
     } else {
       onChange(null);
       setPreviews([]);
@@ -64,18 +76,20 @@ const FileUploadInertia: React.FC<FileUploadInertiaProps> = ({
   };
 
   const displayFiles = React.useMemo(() => {
-    if (!value) return [];
     if (Array.isArray(value)) return value;
-    return [value];
-  }, [value]);
+    if (value) return [value];
+    // kalau belum upload tapi ada previewUrl, pakai itu
+    if (!value && previewUrl) return [previewUrl];
+    return [];
+  }, [value, previewUrl]);
 
   return (
     <div className={`space-y-4 ${className}`}>
       <div
         {...getRootProps()}
         className={`border-2 border-dashed rounded-lg p-6 text-center cursor-pointer transition-colors ${
-          isDragActive 
-            ? 'border-blue-400 bg-blue-50' 
+          isDragActive
+            ? 'border-blue-400 bg-blue-50'
             : 'border-gray-300 hover:border-gray-400'
         }`}
       >
@@ -83,7 +97,8 @@ const FileUploadInertia: React.FC<FileUploadInertiaProps> = ({
         <Upload className="mx-auto h-8 w-8 text-gray-400 mb-2" />
         <p className="text-sm text-gray-600 mb-1">{placeholder}</p>
         <p className="text-xs text-gray-400">
-          {multiple ? 'Multiple files allowed' : 'Single file only'} • Max {Math.round(maxSize / 1024 / 1024)}MB
+          {multiple ? 'Multiple files allowed' : 'Single file only'} • Max{' '}
+          {Math.round(maxSize / 1024 / 1024)}MB
         </p>
       </div>
 
