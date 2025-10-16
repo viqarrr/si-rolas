@@ -1,0 +1,46 @@
+import { NavFooter } from '@/components/nav-footer';
+import { NavMain } from '@/components/nav-main';
+import { NavUser } from '@/components/nav-user';
+import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
+import { type NavItem } from '@/types';
+import { Link } from '@inertiajs/react';
+import { BookOpen, Clock, Eye, FileText, Folder, GraduationCap, Home, MessageSquare, Phone, Users, Wrench } from 'lucide-react';
+import AppLogo from './app-logo';
+
+const mainNavItems: NavItem[] = [
+    { title: 'Dashboard', href: '/admin/dashboard', icon: Home },
+    { title: 'Struktur Organisasi', href: '/admin/struktur-organisasi', icon: Users },
+    { title: 'Visi Misi', href: '/admin/visi-misi', icon: Eye },
+    { title: 'Sejarah', href: '/admin/sejarah', icon: Clock },
+    { title: 'Jurusan', href: '/admin/jurusan', icon: GraduationCap },
+    { title: 'Karya', href: '/admin/karya', icon: Wrench },
+    { title: 'Postingan', href: '/admin/postingan', icon: FileText },
+    { title: 'Kontak', href: '/admin/kontak', icon: Phone },
+    { title: 'Pesan', href: '/admin/pesan', icon: MessageSquare },
+];
+
+export function AppSidebar() {
+    return (
+        <Sidebar collapsible="icon" variant="inset">
+            <SidebarHeader>
+                <SidebarMenu>
+                    <SidebarMenuItem>
+                        <SidebarMenuButton size="lg" asChild>
+                            <Link href={'/admin/dashboard'} prefetch>
+                                <AppLogo />
+                            </Link>
+                        </SidebarMenuButton>
+                    </SidebarMenuItem>
+                </SidebarMenu>
+            </SidebarHeader>
+
+            <SidebarContent>
+                <NavMain items={mainNavItems} />
+            </SidebarContent>
+
+            <SidebarFooter>
+                <NavUser />
+            </SidebarFooter>
+        </Sidebar>
+    );
+}

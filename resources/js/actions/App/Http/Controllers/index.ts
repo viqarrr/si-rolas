@@ -1,4 +1,7 @@
+import PartnershipController from './PartnershipController'
+import JobPostingController from './JobPostingController'
 import Auth from './Auth'
+import CompanyDashboardController from './CompanyDashboardController'
 import DashboardController from './DashboardController'
 import VisionMissionController from './VisionMissionController'
 import OrganizationalStructureController from './OrganizationalStructureController'
@@ -11,7 +14,10 @@ import InquiryController from './InquiryController'
 import Settings from './Settings'
 
 const Controllers = {
+    PartnershipController: Object.assign(PartnershipController, PartnershipController),
+    JobPostingController: Object.assign(JobPostingController, JobPostingController),
     Auth: Object.assign(Auth, Auth),
+    CompanyDashboardController: Object.assign(CompanyDashboardController, CompanyDashboardController),
     DashboardController: Object.assign(DashboardController, DashboardController),
     VisionMissionController: Object.assign(VisionMissionController, VisionMissionController),
     OrganizationalStructureController: Object.assign(OrganizationalStructureController, OrganizationalStructureController),

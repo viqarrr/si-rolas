@@ -2,7 +2,7 @@ import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFo
 /**
 * @see \App\Http\Controllers\InquiryController::index
 * @see app/Http/Controllers/InquiryController.php:14
-* @route '/pesan'
+* @route '/admin/pesan'
 */
 export const index = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: index.url(options),
@@ -11,13 +11,13 @@ export const index = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 index.definition = {
     methods: ["get","head"],
-    url: '/pesan',
+    url: '/admin/pesan',
 } satisfies RouteDefinition<["get","head"]>
 
 /**
 * @see \App\Http\Controllers\InquiryController::index
 * @see app/Http/Controllers/InquiryController.php:14
-* @route '/pesan'
+* @route '/admin/pesan'
 */
 index.url = (options?: RouteQueryOptions) => {
     return index.definition.url + queryParams(options)
@@ -26,7 +26,7 @@ index.url = (options?: RouteQueryOptions) => {
 /**
 * @see \App\Http\Controllers\InquiryController::index
 * @see app/Http/Controllers/InquiryController.php:14
-* @route '/pesan'
+* @route '/admin/pesan'
 */
 index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: index.url(options),
@@ -36,7 +36,7 @@ index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 /**
 * @see \App\Http\Controllers\InquiryController::index
 * @see app/Http/Controllers/InquiryController.php:14
-* @route '/pesan'
+* @route '/admin/pesan'
 */
 index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: index.url(options),
@@ -46,7 +46,7 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 /**
 * @see \App\Http\Controllers\InquiryController::index
 * @see app/Http/Controllers/InquiryController.php:14
-* @route '/pesan'
+* @route '/admin/pesan'
 */
 const indexForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: index.url(options),
@@ -56,7 +56,7 @@ const indexForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => (
 /**
 * @see \App\Http\Controllers\InquiryController::index
 * @see app/Http/Controllers/InquiryController.php:14
-* @route '/pesan'
+* @route '/admin/pesan'
 */
 indexForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: index.url(options),
@@ -66,7 +66,7 @@ indexForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
 /**
 * @see \App\Http\Controllers\InquiryController::index
 * @see app/Http/Controllers/InquiryController.php:14
-* @route '/pesan'
+* @route '/admin/pesan'
 */
 indexForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: index.url({
@@ -81,59 +81,109 @@ indexForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
 index.form = indexForm
 
 /**
+* @see \App\Http\Controllers\InquiryController::store
+* @see app/Http/Controllers/InquiryController.php:0
+* @route '/admin/pesan'
+*/
+export const store = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+    url: store.url(options),
+    method: 'post',
+})
+
+store.definition = {
+    methods: ["post"],
+    url: '/admin/pesan',
+} satisfies RouteDefinition<["post"]>
+
+/**
+* @see \App\Http\Controllers\InquiryController::store
+* @see app/Http/Controllers/InquiryController.php:0
+* @route '/admin/pesan'
+*/
+store.url = (options?: RouteQueryOptions) => {
+    return store.definition.url + queryParams(options)
+}
+
+/**
+* @see \App\Http\Controllers\InquiryController::store
+* @see app/Http/Controllers/InquiryController.php:0
+* @route '/admin/pesan'
+*/
+store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+    url: store.url(options),
+    method: 'post',
+})
+
+/**
+* @see \App\Http\Controllers\InquiryController::store
+* @see app/Http/Controllers/InquiryController.php:0
+* @route '/admin/pesan'
+*/
+const storeForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    action: store.url(options),
+    method: 'post',
+})
+
+/**
+* @see \App\Http\Controllers\InquiryController::store
+* @see app/Http/Controllers/InquiryController.php:0
+* @route '/admin/pesan'
+*/
+storeForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    action: store.url(options),
+    method: 'post',
+})
+
+store.form = storeForm
+
+/**
 * @see \App\Http\Controllers\InquiryController::show
 * @see app/Http/Controllers/InquiryController.php:33
-* @route '/pesan/{inquiry}'
+* @route '/admin/pesan/{pesan}'
 */
-export const show = (args: { inquiry: number | { id: number } } | [inquiry: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+export const show = (args: { pesan: string | number } | [pesan: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: show.url(args, options),
     method: 'get',
 })
 
 show.definition = {
     methods: ["get","head"],
-    url: '/pesan/{inquiry}',
+    url: '/admin/pesan/{pesan}',
 } satisfies RouteDefinition<["get","head"]>
 
 /**
 * @see \App\Http\Controllers\InquiryController::show
 * @see app/Http/Controllers/InquiryController.php:33
-* @route '/pesan/{inquiry}'
+* @route '/admin/pesan/{pesan}'
 */
-show.url = (args: { inquiry: number | { id: number } } | [inquiry: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
+show.url = (args: { pesan: string | number } | [pesan: string | number ] | string | number, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
-        args = { inquiry: args }
-    }
-
-    if (typeof args === 'object' && !Array.isArray(args) && 'id' in args) {
-        args = { inquiry: args.id }
+        args = { pesan: args }
     }
 
     if (Array.isArray(args)) {
         args = {
-            inquiry: args[0],
+            pesan: args[0],
         }
     }
 
     args = applyUrlDefaults(args)
 
     const parsedArgs = {
-        inquiry: typeof args.inquiry === 'object'
-        ? args.inquiry.id
-        : args.inquiry,
+        pesan: args.pesan,
     }
 
     return show.definition.url
-            .replace('{inquiry}', parsedArgs.inquiry.toString())
+            .replace('{pesan}', parsedArgs.pesan.toString())
             .replace(/\/+$/, '') + queryParams(options)
 }
 
 /**
 * @see \App\Http\Controllers\InquiryController::show
 * @see app/Http/Controllers/InquiryController.php:33
-* @route '/pesan/{inquiry}'
+* @route '/admin/pesan/{pesan}'
 */
-show.get = (args: { inquiry: number | { id: number } } | [inquiry: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+show.get = (args: { pesan: string | number } | [pesan: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: show.url(args, options),
     method: 'get',
 })
@@ -141,9 +191,9 @@ show.get = (args: { inquiry: number | { id: number } } | [inquiry: number | { id
 /**
 * @see \App\Http\Controllers\InquiryController::show
 * @see app/Http/Controllers/InquiryController.php:33
-* @route '/pesan/{inquiry}'
+* @route '/admin/pesan/{pesan}'
 */
-show.head = (args: { inquiry: number | { id: number } } | [inquiry: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+show.head = (args: { pesan: string | number } | [pesan: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: show.url(args, options),
     method: 'head',
 })
@@ -151,9 +201,9 @@ show.head = (args: { inquiry: number | { id: number } } | [inquiry: number | { i
 /**
 * @see \App\Http\Controllers\InquiryController::show
 * @see app/Http/Controllers/InquiryController.php:33
-* @route '/pesan/{inquiry}'
+* @route '/admin/pesan/{pesan}'
 */
-const showForm = (args: { inquiry: number | { id: number } } | [inquiry: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+const showForm = (args: { pesan: string | number } | [pesan: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: show.url(args, options),
     method: 'get',
 })
@@ -161,9 +211,9 @@ const showForm = (args: { inquiry: number | { id: number } } | [inquiry: number 
 /**
 * @see \App\Http\Controllers\InquiryController::show
 * @see app/Http/Controllers/InquiryController.php:33
-* @route '/pesan/{inquiry}'
+* @route '/admin/pesan/{pesan}'
 */
-showForm.get = (args: { inquiry: number | { id: number } } | [inquiry: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+showForm.get = (args: { pesan: string | number } | [pesan: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: show.url(args, options),
     method: 'get',
 })
@@ -171,9 +221,9 @@ showForm.get = (args: { inquiry: number | { id: number } } | [inquiry: number | 
 /**
 * @see \App\Http\Controllers\InquiryController::show
 * @see app/Http/Controllers/InquiryController.php:33
-* @route '/pesan/{inquiry}'
+* @route '/admin/pesan/{pesan}'
 */
-showForm.head = (args: { inquiry: number | { id: number } } | [inquiry: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+showForm.head = (args: { pesan: string | number } | [pesan: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: show.url(args, {
         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'HEAD',
@@ -186,59 +236,162 @@ showForm.head = (args: { inquiry: number | { id: number } } | [inquiry: number |
 show.form = showForm
 
 /**
-* @see \App\Http\Controllers\InquiryController::update
-* @see app/Http/Controllers/InquiryController.php:46
-* @route '/pesan/{inquiry}'
+* @see \App\Http\Controllers\InquiryController::edit
+* @see app/Http/Controllers/InquiryController.php:0
+* @route '/admin/pesan/{pesan}/edit'
 */
-export const update = (args: { inquiry: number | { id: number } } | [inquiry: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
-    url: update.url(args, options),
-    method: 'patch',
+export const edit = (args: { pesan: string | number } | [pesan: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: edit.url(args, options),
+    method: 'get',
 })
 
-update.definition = {
-    methods: ["patch"],
-    url: '/pesan/{inquiry}',
-} satisfies RouteDefinition<["patch"]>
+edit.definition = {
+    methods: ["get","head"],
+    url: '/admin/pesan/{pesan}/edit',
+} satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see \App\Http\Controllers\InquiryController::update
-* @see app/Http/Controllers/InquiryController.php:46
-* @route '/pesan/{inquiry}'
+* @see \App\Http\Controllers\InquiryController::edit
+* @see app/Http/Controllers/InquiryController.php:0
+* @route '/admin/pesan/{pesan}/edit'
 */
-update.url = (args: { inquiry: number | { id: number } } | [inquiry: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
+edit.url = (args: { pesan: string | number } | [pesan: string | number ] | string | number, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
-        args = { inquiry: args }
-    }
-
-    if (typeof args === 'object' && !Array.isArray(args) && 'id' in args) {
-        args = { inquiry: args.id }
+        args = { pesan: args }
     }
 
     if (Array.isArray(args)) {
         args = {
-            inquiry: args[0],
+            pesan: args[0],
         }
     }
 
     args = applyUrlDefaults(args)
 
     const parsedArgs = {
-        inquiry: typeof args.inquiry === 'object'
-        ? args.inquiry.id
-        : args.inquiry,
+        pesan: args.pesan,
+    }
+
+    return edit.definition.url
+            .replace('{pesan}', parsedArgs.pesan.toString())
+            .replace(/\/+$/, '') + queryParams(options)
+}
+
+/**
+* @see \App\Http\Controllers\InquiryController::edit
+* @see app/Http/Controllers/InquiryController.php:0
+* @route '/admin/pesan/{pesan}/edit'
+*/
+edit.get = (args: { pesan: string | number } | [pesan: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: edit.url(args, options),
+    method: 'get',
+})
+
+/**
+* @see \App\Http\Controllers\InquiryController::edit
+* @see app/Http/Controllers/InquiryController.php:0
+* @route '/admin/pesan/{pesan}/edit'
+*/
+edit.head = (args: { pesan: string | number } | [pesan: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+    url: edit.url(args, options),
+    method: 'head',
+})
+
+/**
+* @see \App\Http\Controllers\InquiryController::edit
+* @see app/Http/Controllers/InquiryController.php:0
+* @route '/admin/pesan/{pesan}/edit'
+*/
+const editForm = (args: { pesan: string | number } | [pesan: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: edit.url(args, options),
+    method: 'get',
+})
+
+/**
+* @see \App\Http\Controllers\InquiryController::edit
+* @see app/Http/Controllers/InquiryController.php:0
+* @route '/admin/pesan/{pesan}/edit'
+*/
+editForm.get = (args: { pesan: string | number } | [pesan: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: edit.url(args, options),
+    method: 'get',
+})
+
+/**
+* @see \App\Http\Controllers\InquiryController::edit
+* @see app/Http/Controllers/InquiryController.php:0
+* @route '/admin/pesan/{pesan}/edit'
+*/
+editForm.head = (args: { pesan: string | number } | [pesan: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+    action: edit.url(args, {
+        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
+            _method: 'HEAD',
+            ...(options?.query ?? options?.mergeQuery ?? {}),
+        }
+    }),
+    method: 'get',
+})
+
+edit.form = editForm
+
+/**
+* @see \App\Http\Controllers\InquiryController::update
+* @see app/Http/Controllers/InquiryController.php:46
+* @route '/admin/pesan/{pesan}'
+*/
+export const update = (args: { pesan: string | number } | [pesan: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
+    url: update.url(args, options),
+    method: 'put',
+})
+
+update.definition = {
+    methods: ["put","patch"],
+    url: '/admin/pesan/{pesan}',
+} satisfies RouteDefinition<["put","patch"]>
+
+/**
+* @see \App\Http\Controllers\InquiryController::update
+* @see app/Http/Controllers/InquiryController.php:46
+* @route '/admin/pesan/{pesan}'
+*/
+update.url = (args: { pesan: string | number } | [pesan: string | number ] | string | number, options?: RouteQueryOptions) => {
+    if (typeof args === 'string' || typeof args === 'number') {
+        args = { pesan: args }
+    }
+
+    if (Array.isArray(args)) {
+        args = {
+            pesan: args[0],
+        }
+    }
+
+    args = applyUrlDefaults(args)
+
+    const parsedArgs = {
+        pesan: args.pesan,
     }
 
     return update.definition.url
-            .replace('{inquiry}', parsedArgs.inquiry.toString())
+            .replace('{pesan}', parsedArgs.pesan.toString())
             .replace(/\/+$/, '') + queryParams(options)
 }
 
 /**
 * @see \App\Http\Controllers\InquiryController::update
 * @see app/Http/Controllers/InquiryController.php:46
-* @route '/pesan/{inquiry}'
+* @route '/admin/pesan/{pesan}'
 */
-update.patch = (args: { inquiry: number | { id: number } } | [inquiry: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
+update.put = (args: { pesan: string | number } | [pesan: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
+    url: update.url(args, options),
+    method: 'put',
+})
+
+/**
+* @see \App\Http\Controllers\InquiryController::update
+* @see app/Http/Controllers/InquiryController.php:46
+* @route '/admin/pesan/{pesan}'
+*/
+update.patch = (args: { pesan: string | number } | [pesan: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
     url: update.url(args, options),
     method: 'patch',
 })
@@ -246,12 +399,12 @@ update.patch = (args: { inquiry: number | { id: number } } | [inquiry: number | 
 /**
 * @see \App\Http\Controllers\InquiryController::update
 * @see app/Http/Controllers/InquiryController.php:46
-* @route '/pesan/{inquiry}'
+* @route '/admin/pesan/{pesan}'
 */
-const updateForm = (args: { inquiry: number | { id: number } } | [inquiry: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+const updateForm = (args: { pesan: string | number } | [pesan: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: update.url(args, {
         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-            _method: 'PATCH',
+            _method: 'PUT',
             ...(options?.query ?? options?.mergeQuery ?? {}),
         }
     }),
@@ -261,9 +414,24 @@ const updateForm = (args: { inquiry: number | { id: number } } | [inquiry: numbe
 /**
 * @see \App\Http\Controllers\InquiryController::update
 * @see app/Http/Controllers/InquiryController.php:46
-* @route '/pesan/{inquiry}'
+* @route '/admin/pesan/{pesan}'
 */
-updateForm.patch = (args: { inquiry: number | { id: number } } | [inquiry: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+updateForm.put = (args: { pesan: string | number } | [pesan: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    action: update.url(args, {
+        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
+            _method: 'PUT',
+            ...(options?.query ?? options?.mergeQuery ?? {}),
+        }
+    }),
+    method: 'post',
+})
+
+/**
+* @see \App\Http\Controllers\InquiryController::update
+* @see app/Http/Controllers/InquiryController.php:46
+* @route '/admin/pesan/{pesan}'
+*/
+updateForm.patch = (args: { pesan: string | number } | [pesan: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: update.url(args, {
         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'PATCH',
@@ -278,57 +446,51 @@ update.form = updateForm
 /**
 * @see \App\Http\Controllers\InquiryController::destroy
 * @see app/Http/Controllers/InquiryController.php:54
-* @route '/pesan/{inquiry}'
+* @route '/admin/pesan/{pesan}'
 */
-export const destroy = (args: { inquiry: number | { id: number } } | [inquiry: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
+export const destroy = (args: { pesan: string | number } | [pesan: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
     url: destroy.url(args, options),
     method: 'delete',
 })
 
 destroy.definition = {
     methods: ["delete"],
-    url: '/pesan/{inquiry}',
+    url: '/admin/pesan/{pesan}',
 } satisfies RouteDefinition<["delete"]>
 
 /**
 * @see \App\Http\Controllers\InquiryController::destroy
 * @see app/Http/Controllers/InquiryController.php:54
-* @route '/pesan/{inquiry}'
+* @route '/admin/pesan/{pesan}'
 */
-destroy.url = (args: { inquiry: number | { id: number } } | [inquiry: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions) => {
+destroy.url = (args: { pesan: string | number } | [pesan: string | number ] | string | number, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
-        args = { inquiry: args }
-    }
-
-    if (typeof args === 'object' && !Array.isArray(args) && 'id' in args) {
-        args = { inquiry: args.id }
+        args = { pesan: args }
     }
 
     if (Array.isArray(args)) {
         args = {
-            inquiry: args[0],
+            pesan: args[0],
         }
     }
 
     args = applyUrlDefaults(args)
 
     const parsedArgs = {
-        inquiry: typeof args.inquiry === 'object'
-        ? args.inquiry.id
-        : args.inquiry,
+        pesan: args.pesan,
     }
 
     return destroy.definition.url
-            .replace('{inquiry}', parsedArgs.inquiry.toString())
+            .replace('{pesan}', parsedArgs.pesan.toString())
             .replace(/\/+$/, '') + queryParams(options)
 }
 
 /**
 * @see \App\Http\Controllers\InquiryController::destroy
 * @see app/Http/Controllers/InquiryController.php:54
-* @route '/pesan/{inquiry}'
+* @route '/admin/pesan/{pesan}'
 */
-destroy.delete = (args: { inquiry: number | { id: number } } | [inquiry: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
+destroy.delete = (args: { pesan: string | number } | [pesan: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
     url: destroy.url(args, options),
     method: 'delete',
 })
@@ -336,9 +498,9 @@ destroy.delete = (args: { inquiry: number | { id: number } } | [inquiry: number 
 /**
 * @see \App\Http\Controllers\InquiryController::destroy
 * @see app/Http/Controllers/InquiryController.php:54
-* @route '/pesan/{inquiry}'
+* @route '/admin/pesan/{pesan}'
 */
-const destroyForm = (args: { inquiry: number | { id: number } } | [inquiry: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+const destroyForm = (args: { pesan: string | number } | [pesan: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: destroy.url(args, {
         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'DELETE',
@@ -351,9 +513,9 @@ const destroyForm = (args: { inquiry: number | { id: number } } | [inquiry: numb
 /**
 * @see \App\Http\Controllers\InquiryController::destroy
 * @see app/Http/Controllers/InquiryController.php:54
-* @route '/pesan/{inquiry}'
+* @route '/admin/pesan/{pesan}'
 */
-destroyForm.delete = (args: { inquiry: number | { id: number } } | [inquiry: number | { id: number } ] | number | { id: number }, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+destroyForm.delete = (args: { pesan: string | number } | [pesan: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: destroy.url(args, {
         [options?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'DELETE',
@@ -365,6 +527,6 @@ destroyForm.delete = (args: { inquiry: number | { id: number } } | [inquiry: num
 
 destroy.form = destroyForm
 
-const InquiryController = { index, show, update, destroy }
+const InquiryController = { index, store, show, edit, update, destroy }
 
 export default InquiryController

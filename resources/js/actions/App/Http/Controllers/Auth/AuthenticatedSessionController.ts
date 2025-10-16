@@ -139,14 +139,69 @@ store.form = storeForm
 /**
 * @see \App\Http\Controllers\Auth\AuthenticatedSessionController::destroy
 * @see app/Http/Controllers/Auth/AuthenticatedSessionController.php:42
-* @route '/logout'
+* @route '/admin/logout'
 */
-export const destroy = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
-    url: destroy.url(options),
+const destroy0bf9725898bf54069779505e96ede62a = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+    url: destroy0bf9725898bf54069779505e96ede62a.url(options),
     method: 'post',
 })
 
-destroy.definition = {
+destroy0bf9725898bf54069779505e96ede62a.definition = {
+    methods: ["post"],
+    url: '/admin/logout',
+} satisfies RouteDefinition<["post"]>
+
+/**
+* @see \App\Http\Controllers\Auth\AuthenticatedSessionController::destroy
+* @see app/Http/Controllers/Auth/AuthenticatedSessionController.php:42
+* @route '/admin/logout'
+*/
+destroy0bf9725898bf54069779505e96ede62a.url = (options?: RouteQueryOptions) => {
+    return destroy0bf9725898bf54069779505e96ede62a.definition.url + queryParams(options)
+}
+
+/**
+* @see \App\Http\Controllers\Auth\AuthenticatedSessionController::destroy
+* @see app/Http/Controllers/Auth/AuthenticatedSessionController.php:42
+* @route '/admin/logout'
+*/
+destroy0bf9725898bf54069779505e96ede62a.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+    url: destroy0bf9725898bf54069779505e96ede62a.url(options),
+    method: 'post',
+})
+
+/**
+* @see \App\Http\Controllers\Auth\AuthenticatedSessionController::destroy
+* @see app/Http/Controllers/Auth/AuthenticatedSessionController.php:42
+* @route '/admin/logout'
+*/
+const destroy0bf9725898bf54069779505e96ede62aForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    action: destroy0bf9725898bf54069779505e96ede62a.url(options),
+    method: 'post',
+})
+
+/**
+* @see \App\Http\Controllers\Auth\AuthenticatedSessionController::destroy
+* @see app/Http/Controllers/Auth/AuthenticatedSessionController.php:42
+* @route '/admin/logout'
+*/
+destroy0bf9725898bf54069779505e96ede62aForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    action: destroy0bf9725898bf54069779505e96ede62a.url(options),
+    method: 'post',
+})
+
+destroy0bf9725898bf54069779505e96ede62a.form = destroy0bf9725898bf54069779505e96ede62aForm
+/**
+* @see \App\Http\Controllers\Auth\AuthenticatedSessionController::destroy
+* @see app/Http/Controllers/Auth/AuthenticatedSessionController.php:42
+* @route '/logout'
+*/
+const destroyf732b903d9f8919b4c24bef1f8bb897a = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+    url: destroyf732b903d9f8919b4c24bef1f8bb897a.url(options),
+    method: 'post',
+})
+
+destroyf732b903d9f8919b4c24bef1f8bb897a.definition = {
     methods: ["post"],
     url: '/logout',
 } satisfies RouteDefinition<["post"]>
@@ -156,8 +211,8 @@ destroy.definition = {
 * @see app/Http/Controllers/Auth/AuthenticatedSessionController.php:42
 * @route '/logout'
 */
-destroy.url = (options?: RouteQueryOptions) => {
-    return destroy.definition.url + queryParams(options)
+destroyf732b903d9f8919b4c24bef1f8bb897a.url = (options?: RouteQueryOptions) => {
+    return destroyf732b903d9f8919b4c24bef1f8bb897a.definition.url + queryParams(options)
 }
 
 /**
@@ -165,8 +220,8 @@ destroy.url = (options?: RouteQueryOptions) => {
 * @see app/Http/Controllers/Auth/AuthenticatedSessionController.php:42
 * @route '/logout'
 */
-destroy.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
-    url: destroy.url(options),
+destroyf732b903d9f8919b4c24bef1f8bb897a.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+    url: destroyf732b903d9f8919b4c24bef1f8bb897a.url(options),
     method: 'post',
 })
 
@@ -175,8 +230,8 @@ destroy.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 * @see app/Http/Controllers/Auth/AuthenticatedSessionController.php:42
 * @route '/logout'
 */
-const destroyForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-    action: destroy.url(options),
+const destroyf732b903d9f8919b4c24bef1f8bb897aForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    action: destroyf732b903d9f8919b4c24bef1f8bb897a.url(options),
     method: 'post',
 })
 
@@ -185,12 +240,17 @@ const destroyForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> =
 * @see app/Http/Controllers/Auth/AuthenticatedSessionController.php:42
 * @route '/logout'
 */
-destroyForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
-    action: destroy.url(options),
+destroyf732b903d9f8919b4c24bef1f8bb897aForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+    action: destroyf732b903d9f8919b4c24bef1f8bb897a.url(options),
     method: 'post',
 })
 
-destroy.form = destroyForm
+destroyf732b903d9f8919b4c24bef1f8bb897a.form = destroyf732b903d9f8919b4c24bef1f8bb897aForm
+
+export const destroy = {
+    '/admin/logout': destroy0bf9725898bf54069779505e96ede62a,
+    '/logout': destroyf732b903d9f8919b4c24bef1f8bb897a,
+}
 
 const AuthenticatedSessionController = { create, store, destroy }
 
